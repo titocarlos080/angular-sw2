@@ -1,0 +1,23 @@
+/* Hacer que el wrapper sea un contenedor de tipo flex */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que la altura mínima de la página sea 100% de la ventana */
+}
+
+/* El contenido debe crecer para llenar el espacio disponible */
+.content-wrapper {
+    flex: 1; /* Esto hace que el contenido crezca y ocupe el espacio restante */
+}
+
+/* Aseguramos que el pie de página esté al final */
+.main-footer {
+    background-color: #8db6c0;
+    padding: 10px 0;
+    font-size: 14px;
+    color: #1a3031;
+    text-align: center;
+    margin-top: auto; /* Esto empuja el footer hacia el final */
+}
+
+ 
