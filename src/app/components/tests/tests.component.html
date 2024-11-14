@@ -1,1 +1,109 @@
-<p>tests works!</p>
+<div *ngIf="mensaje" class="alert">
+  {{ mensaje }}
+</div>
+
+<!-- Crear nuevo test -->
+<div class="form-container">
+  <h2>Crear Nuevo Test</h2>
+  <form (ngSubmit)="crearTest()" #testForm="ngForm" class="form">
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" [(ngModel)]="nuevoTest.nombre" name="nombre" class="form-input" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="fecha">Fecha:</label>
+      <input type="date" id="fecha" [(ngModel)]="nuevoTest.fecha" name="fecha" class="form-input" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="estado">Estado:</label>
+      <input type="text" id="estado" [(ngModel)]="nuevoTest.estado" name="estado" class="form-input" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="usuarioId">Usuario:</label>
+      <select [(ngModel)]="nuevoTest.usuarioId" name="usuarioId" class="form-input" required>
+        <option *ngFor="let usuario of usuarios" [value]="usuario.id">{{ usuario.nombre }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="categoriaId">Categoría:</label>
+      <select [(ngModel)]="nuevoTest.categoriaId" name="categoriaId" class="form-input" required>
+        <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="calificacion">Calificación:</label>
+      <input type="number" id="calificacion" [(ngModel)]="nuevoTest.calificacion" name="calificacion" class="form-input" required>
+    </div>
+
+    <div class="form-group">
+      <label for="observaciones">Observaciones:</label>
+      <textarea id="observaciones" [(ngModel)]="nuevoTest.observaciones" name="observaciones" class="form-textarea" required></textarea>
+    </div>
+
+    <button type="submit" class="btn-submit" [disabled]="testForm.invalid">Crear Test</button>
+  </form>
+</div>
+
+<!-- Lista de tests -->
+<h2>Lista de Tests</h2>
+<ul class="test-list">
+  <li *ngFor="let test of tests" class="test-item">
+    <span>{{ test.nombre }} - {{ getUsuarioNombre(test.usuarioId) }} - {{ getCategoriaNombre(test.categoriaId) }}</span>
+    <div>
+      <button (click)="seleccionarTest(test)" class="btn-edit">Editar</button>
+      <button (click)="eliminarTest(test.id)" class="btn-delete">Eliminar</button>
+    </div>
+  </li>
+</ul>
+
+<!-- Editar Test -->
+<div *ngIf="testSeleccionado" class="form-container">
+  <h2>Editar Test</h2>
+  <form (ngSubmit)="actualizarTest()" class="form">
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" [(ngModel)]="testSeleccionado.nombre" name="nombre" class="form-input" required>
+    </div>
+
+    <div class="form-group">
+      <label for="fecha">Fecha:</label>
+      <input type="date" id="fecha" [(ngModel)]="testSeleccionado.fecha" name="fecha" class="form-input" required>
+    </div>
+
+    <div class="form-group">
+      <label for="estado">Estado:</label>
+      <input type="text" id="estado" [(ngModel)]="testSeleccionado.estado" name="estado" class="form-input" required>
+    </div>
+
+    <div class="form-group">
+      <label for="calificacion">Calificación:</label>
+      <input type="number" id="calificacion" [(ngModel)]="testSeleccionado.calificacion" name="calificacion" class="form-input" min="0" max="100">
+    </div>
+
+    <div class="form-group">
+      <label for="observaciones">Observaciones:</label>
+      <textarea id="observaciones" [(ngModel)]="testSeleccionado.observaciones" name="observaciones" class="form-textarea"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="usuarioId">Usuario:</label>
+      <select [(ngModel)]="testSeleccionado.usuarioId" name="usuarioId" class="form-input" required>
+        <option *ngFor="let usuario of usuarios" [value]="usuario.id">{{ usuario.nombre }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="categoriaId">Categoría:</label>
+      <select [(ngModel)]="testSeleccionado.categoriaId" name="categoriaId" class="form-input" required>
+        <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn-submit">Actualizar Test</button>
+  </form>
+</div>

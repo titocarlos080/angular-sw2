@@ -1,0 +1,127 @@
+/* Global Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Form Container */
+.form-container {
+  background-color: white;
+  padding: 30px;
+  max-width: 700px;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 16px;
+  color: #555;
+}
+
+.form-input, .form-textarea, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.form-input:focus, .form-textarea:focus, select:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+.form-textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+button {
+  padding: 12px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.btn-submit {
+  width: 100%;
+}
+
+.test-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.test-actions button {
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.test-actions button:hover {
+  background-color: #ddd;
+}
+
+.alert {
+  background-color: #f44336;
+  color: white;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.test-list {
+  list-style: none;
+  padding: 0;
+}
+
+.test-item {
+  background-color: white;
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.test-item span {
+  font-size: 18px;
+  color: #333;
+}
+
+.test-item .btn-edit, .test-item .btn-delete {
+  padding: 5px 10px;
+  background-color: #aa1818;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.test-item .btn-edit:hover, .test-item .btn-delete:hover {
+  background-color: #ccc;
+}

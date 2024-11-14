@@ -1,0 +1,36 @@
+<div>
+    <h2>Gestión de Roles</h2>
+  
+    <div *ngIf="successMessage" class="alert alert-success">
+      {{ successMessage }}
+    </div>
+  
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+  
+    <div>
+      <input [(ngModel)]="nuevoRol" placeholder="Nuevo rol" class="form-control" />
+      <button *ngIf="roleIdToEdit" (click)="updateRol()" class="btn btn-warning">Actualizar Rol</button>
+      <button *ngIf="!roleIdToEdit" (click)="createRol()" class="btn btn-primary">Crear Rol</button>
+    </div>
+  
+    <table class="table table-striped mt-3">
+      <thead>
+        <tr>
+          <th>Nombre del Rol</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rol of roles">
+          <td>{{ rol.nombre }}</td>
+          <td>
+            <button (click)="editRol(rol.id, rol.nombre)" class="btn btn-info">Editar</button>
+            <button (click)="deleteRol(rol.id)" class="btn btn-danger">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
