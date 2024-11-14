@@ -21,7 +21,7 @@ export const appConfig: ApplicationConfig = {
       return {
         link: httpLink.create({
           // Aquí debe ir el endpoint de tu servidor Spring Boot GraphQL
-          uri: 'http://localhost:8080/graphql',  // Reemplaza con tu URL real
+          uri: 'http://54.144.9.226:8080/graphql',  // Reemplaza con tu URL real
         }),
         cache: new InMemoryCache(),
       };
