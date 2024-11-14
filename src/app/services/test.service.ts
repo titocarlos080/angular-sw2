@@ -150,6 +150,7 @@ export class TestService {
 
   // Eliminar un test
   deleteTest(id: string): Observable<any> {
+    alert("Hola")
     const DELETE_TEST = gql`
       mutation deleteTest($id: String!) {
         deleteTest(id: $id)

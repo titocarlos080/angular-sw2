@@ -1,127 +1,139 @@
-/* Global Styles */
-body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #f7f7f7;
-  color: #333;
-  margin: 0;
-  padding: 0;
+/* General styles */
+.alert {
+  padding: 10px;
+  margin-bottom: 20px;
+  color: #ffffff;
+  background-color: #f44336; /* Red background for messages */
+  border-radius: 5px;
 }
 
-h2 {
-  text-align: center;
-  font-size: 26px;
+.btn-toggle {
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  background-color: #007bff; /* Bootstrap-like blue */
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-toggle:hover {
+  background-color: #0056b3;
+}
+
+/* Form styles */
+.form-container {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.form h2 {
   margin-bottom: 20px;
   color: #333;
-}
-
-/* Form Container */
-.form-container {
-  background-color: white;
-  padding: 30px;
-  max-width: 700px;
-  margin: 20px auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
-label {
-  font-size: 16px;
+.form-group label {
+  display: block;
+  font-weight: bold;
   color: #555;
+  margin-bottom: 5px;
 }
 
-.form-input, .form-textarea, select {
+.form-input,
+.form-textarea,
+select {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 14px;
-  margin-top: 5px;
+  box-sizing: border-box;
 }
 
-.form-input:focus, .form-textarea:focus, select:focus {
+.form-input:focus,
+.form-textarea:focus,
+select:focus {
+  border-color: #007bff;
   outline: none;
-  border-color: #4CAF50;
 }
 
 .form-textarea {
   resize: vertical;
-  height: 100px;
-}
-
-button {
-  padding: 12px 20px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 10px;
-}
-
-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
 }
 
 .btn-submit {
-  width: 100%;
-}
-
-.test-actions {
-  display: flex;
-  justify-content: space-between;
-}
-
-.test-actions button {
-  padding: 5px 10px;
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
+  padding: 10px 15px;
+  background-color: #28a745; /* Bootstrap-like green */
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 16px;
 }
 
-.test-actions button:hover {
+.btn-submit:disabled {
   background-color: #ddd;
+  cursor: not-allowed;
 }
 
-.alert {
-  background-color: #f44336;
-  color: white;
-  padding: 15px;
-  margin-bottom: 20px;
-  border-radius: 4px;
-  text-align: center;
+.btn-submit:hover:not(:disabled) {
+  background-color: #218838;
 }
 
-.test-list {
-  list-style: none;
-  padding: 0;
+/* Table styles */
+.test-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
 }
 
-.test-item {
-  background-color: white;
-  margin-bottom: 10px;
-  padding: 15px;
-  border-radius: 6px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.test-table th,
+.test-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
 }
 
-.test-item span {
-  font-size: 18px;
+.test-table th {
+  background-color: #f2f2f2;
   color: #333;
 }
 
-.test-item .btn-edit, .test-item .btn-delete {
-  padding: 5px 10px;
-  background-color: #aa1818;
-  border: 1px solid #ccc;
-  cursor: pointer;
+.test-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
 }
 
-.test-item .btn-edit:hover, .test-item .btn-delete:hover {
-  background-color: #ccc;
+/* Button styles inside table */
+.btn-edit,
+.btn-delete {
+  padding: 5px 10px;
+  margin: 0 2px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.btn-edit {
+  background-color: #ffc107; /* Yellow */
+}
+
+.btn-edit:hover {
+  background-color: #e0a800;
+}
+
+.btn-delete {
+  background-color: #dc3545; /* Red */
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
 }

@@ -1,0 +1,60 @@
+/* Estilos para la estructura general del dashboard */
+.dashboard-container {
+    width: 80%;
+    margin: 30px auto;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  /* Estilos para la cabecera del dashboard */
+  .header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para el cuerpo del dashboard */
+  .body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding-top: 20px;
+  }
+  
+  /* Estilos para cada KPI */
+  .kpi {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Efecto hover sobre los KPIs */
+  .kpi:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Estilo de los títulos dentro de cada KPI */
+  .kpi h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilo para los valores dentro de cada KPI */
+  .kpi p {
+    font-size: 18px;
+    color: #666;
+    font-weight: bold;
+  }
+  

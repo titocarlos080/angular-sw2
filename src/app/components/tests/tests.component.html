@@ -1,26 +1,36 @@
+
+<div *ngIf="cargando" class="text-center">
+  <mat-spinner></mat-spinner> <!-- Spinner de Material Angular -->
+</div>
+<!-- Message Display -->
 <div *ngIf="mensaje" class="alert">
   {{ mensaje }}
 </div>
 
-<!-- Crear nuevo test -->
-<div class="form-container">
+<!-- Button to toggle the form visibility -->
+<button (click)="toggleForm()" class="btn-toggle">
+  {{ showForm ? 'Ocultar Formulario' : 'Crear Nuevo Test' }}
+</button>
+
+<!-- Form to create a new test, initially hidden -->
+<div *ngIf="showForm" class="form-container">
   <h2>Crear Nuevo Test</h2>
   <form (ngSubmit)="crearTest()" #testForm="ngForm" class="form">
     <div class="form-group">
       <label for="nombre">Nombre:</label>
       <input type="text" id="nombre" [(ngModel)]="nuevoTest.nombre" name="nombre" class="form-input" required>
     </div>
-    
+
     <div class="form-group">
       <label for="fecha">Fecha:</label>
       <input type="date" id="fecha" [(ngModel)]="nuevoTest.fecha" name="fecha" class="form-input" required>
     </div>
-    
+
     <div class="form-group">
       <label for="estado">Estado:</label>
       <input type="text" id="estado" [(ngModel)]="nuevoTest.estado" name="estado" class="form-input" required>
     </div>
-    
+
     <div class="form-group">
       <label for="usuarioId">Usuario:</label>
       <select [(ngModel)]="nuevoTest.usuarioId" name="usuarioId" class="form-input" required>
@@ -49,19 +59,55 @@
   </form>
 </div>
 
-<!-- Lista de tests -->
+<!-- Table of tests -->
 <h2>Lista de Tests</h2>
-<ul class="test-list">
-  <li *ngFor="let test of tests" class="test-item">
-    <span>{{ test.nombre }} - {{ getUsuarioNombre(test.usuarioId) }} - {{ getCategoriaNombre(test.categoriaId) }}</span>
-    <div>
+<table mat-table [dataSource]="dataSource" class="test-table">
+  <ng-container matColumnDef="nombre">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let test"> {{ test.nombre }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="fecha">
+    <th mat-header-cell *matHeaderCellDef> Fecha </th>
+    <td mat-cell *matCellDef="let test"> {{ test.fecha | date }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="estado">
+    <th mat-header-cell *matHeaderCellDef> Estado </th>
+    <td mat-cell *matCellDef="let test"> {{ test.estado }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="usuario">
+    <th mat-header-cell *matHeaderCellDef> Usuario </th>
+    <td mat-cell *matCellDef="let test"> {{ getUsuarioNombre(test.usuarioId) }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="categoria">
+    <th mat-header-cell *matHeaderCellDef> Categoría </th>
+    <td mat-cell *matCellDef="let test"> {{ getCategoriaNombre(test.categoriaId) }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="calificacion">
+    <th mat-header-cell *matHeaderCellDef> Calificación </th>
+    <td mat-cell *matCellDef="let test"> {{ test.calificacion }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+    <td mat-cell *matCellDef="let test">
       <button (click)="seleccionarTest(test)" class="btn-edit">Editar</button>
       <button (click)="eliminarTest(test.id)" class="btn-delete">Eliminar</button>
-    </div>
-  </li>
-</ul>
+      <button (click)="realizarCertificado(test.id)" class="btn-delete">Certificacion</button>
 
-<!-- Editar Test -->
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+<!-- Form to edit a test, initially hidden -->
 <div *ngIf="testSeleccionado" class="form-container">
   <h2>Editar Test</h2>
   <form (ngSubmit)="actualizarTest()" class="form">
@@ -81,16 +127,6 @@
     </div>
 
     <div class="form-group">
-      <label for="calificacion">Calificación:</label>
-      <input type="number" id="calificacion" [(ngModel)]="testSeleccionado.calificacion" name="calificacion" class="form-input" min="0" max="100">
-    </div>
-
-    <div class="form-group">
-      <label for="observaciones">Observaciones:</label>
-      <textarea id="observaciones" [(ngModel)]="testSeleccionado.observaciones" name="observaciones" class="form-textarea"></textarea>
-    </div>
-
-    <div class="form-group">
       <label for="usuarioId">Usuario:</label>
       <select [(ngModel)]="testSeleccionado.usuarioId" name="usuarioId" class="form-input" required>
         <option *ngFor="let usuario of usuarios" [value]="usuario.id">{{ usuario.nombre }}</option>
@@ -102,6 +138,16 @@
       <select [(ngModel)]="testSeleccionado.categoriaId" name="categoriaId" class="form-input" required>
         <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</option>
       </select>
+    </div>
+
+    <div class="form-group">
+      <label for="calificacion">Calificación:</label>
+      <input type="number" id="calificacion" [(ngModel)]="testSeleccionado.calificacion" name="calificacion" min="0" max="100">
+    </div>
+
+    <div class="form-group">
+      <label for="observaciones">Observaciones:</label>
+      <textarea id="observaciones" [(ngModel)]="testSeleccionado.observaciones" name="observaciones" class="form-textarea"></textarea>
     </div>
 
     <button type="submit" class="btn-submit">Actualizar Test</button>

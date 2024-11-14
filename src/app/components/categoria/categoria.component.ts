@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Categoria } from '../../models/categoria.model';
 import { FormsModule } from '@angular/forms';  // Importar FormsModule para usar ngModel
 import { CommonModule } from '@angular/common';  // Importar CommonModule para directivas comunes
 import { CategoriaService } from '../../services/categoria.service';  // Asegúrate de importar el servicio
-
-@Component({
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+ @Component({
   selector: 'app-categoria',
   standalone: true,  // Marca el componente como independiente
-  imports: [FormsModule, CommonModule],  // Importa los módulos necesarios
-  templateUrl: './categoria.component.html',
+  imports: [FormsModule, CommonModule,MatPaginator], // Asegúrate de importar NgxPaginationModule
+    templateUrl: './categoria.component.html',
   styleUrls: ['./categoria.component.css']
 })
 export class CategoriaComponent implements OnInit {
@@ -16,6 +17,9 @@ export class CategoriaComponent implements OnInit {
   nuevaCategoria: string = '';
   categoriaSeleccionada: Categoria | null = null;
   mensaje: string = '';
+  dataSource: MatTableDataSource<Categoria> = new MatTableDataSource();
+  
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private categoriaService: CategoriaService) { }
 
@@ -23,11 +27,15 @@ export class CategoriaComponent implements OnInit {
     this.obtenerCategorias();
   }
 
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+  }
+
   obtenerCategorias(): void {
     this.categoriaService.getAllCategorias().subscribe({
       next: (response: any) => {
-        this.categorias = response.data.getAllCategorias;  // Asegúrate de acceder a la propiedad 'data'
-        this.mensaje = 'Categorías cargadas correctamente';
+        this.categorias = response.data.getAllCategorias;
+        this.dataSource.data = this.categorias;  // Asignar los datos a MatTableDataSource
       },
       error: () => {
         this.mensaje = 'Error al cargar categorías';

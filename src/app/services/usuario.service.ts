@@ -47,7 +47,7 @@ export class UsuarioService {
   }
 
   // Método para crear un nuevo usuario
-  createUsuario(user: string, password: string, nombre: string, apellidos: string, sexo: string, fnac: string, telefono: string, correo: string, rol: string, fotoPath: string, especialidad: string, token: string): Observable<any> {
+  createUsuario(user: string, password: string, nombre: string, apellidos: string, sexo: string, fnac: string, telefono: string, correo: string, rol: string, fotoPath: string, especialidad: string): Observable<any> {
     const CREATE_USUARIO = gql`
       mutation createUsuario(  $user: String!,$password: String!,$nombre: String!,$apellidos: String!, $sexo: String!,$fnac: String!,
         $telefono: String!,
@@ -81,13 +81,13 @@ export class UsuarioService {
     return this.apollo.mutate({
       mutation: CREATE_USUARIO,
       variables: {
-        user, password, nombre, apellidos, sexo, fnac, telefono, correo, rol, fotoPath, especialidad, token
+        user, password, nombre, apellidos, sexo, fnac, telefono, correo, rol, fotoPath, especialidad
       }
     }) as Observable<any>;
   }
 
   // Método para actualizar un usuario
-  updateUsuario(user: string, password: string, nombre: string, apellidos: string, sexo: string, fnac: string, telefono: string, correo: string, rol: string, fotoPath: string, especialidad: string, token: string): Observable<any> {
+  updateUsuario(user: string, password: string, nombre: string, apellidos: string, sexo: string, fnac: string, telefono: string, correo: string, rol: string, fotoPath: string, especialidad: string): Observable<any> {
     const UPDATE_USUARIO = gql`
       mutation updateUsuario(
         $user: String!,
@@ -125,7 +125,7 @@ export class UsuarioService {
     return this.apollo.mutate({
       mutation: UPDATE_USUARIO,
       variables: {
-        user, password, nombre, apellidos, sexo, fnac, telefono, correo, rol, fotoPath, especialidad, token
+        user, password, nombre, apellidos, sexo, fnac, telefono, correo, rol, fotoPath, especialidad
       }
     }) as Observable<any>;
   }

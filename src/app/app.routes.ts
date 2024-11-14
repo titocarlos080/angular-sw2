@@ -18,7 +18,7 @@ export const routes: Routes = [
     { path: 'tests', component: TestsComponent },
     { path: 'categorias', component: CategoriaComponent },
 
-    { path: 'business-intelligence', component: BusinessIntelligenceComponent },
+   // { path: 'business-intelligence', component: BusinessIntelligenceComponent },
     { path: 'login', component: LoginComponent },
     // { path: 'logout', component: LogoutComponent },
     { path: '**', component: PageNotFoundComponent }       // Ruta para manejar páginas no encontradas

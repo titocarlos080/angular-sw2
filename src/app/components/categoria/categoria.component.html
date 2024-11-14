@@ -1,61 +1,31 @@
 <div class="categoria-container">
-    <h2 class="text-center mb-4">Gestión de Categorías</h2>
-    
-    <!-- Mensaje de estado -->
-    <div *ngIf="mensaje" class="alert alert-info text-center">
-      {{ mensaje }}
-    </div>
-  
-    <!-- Formulario para crear una nueva categoría -->
-    <div class="form-group mb-4">
-      <label for="nuevaCategoria" class="h5">Nueva Categoría:</label>
-      <input 
-        id="nuevaCategoria" 
-        type="text" 
-        [(ngModel)]="nuevaCategoria" 
-        class="form-control shadow-sm" 
-        placeholder="Escribe el nombre de la nueva categoría" 
-      />
-      <button (click)="crearCategoria()" class="btn btn-primary mt-2 w-100">Crear Categoría</button>
-    </div>
-  
-    <!-- Mostrar lista de categorías -->
-    <div *ngIf="categorias.length > 0" class="mb-4">
-      <h3 class="text-center">Lista de Categorías</h3>
-      <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-          <thead class="table-light">
-            <tr>
-              <th>Nombre</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let categoria of categorias">
-              <td>{{ categoria.nombre }}</td>
-              <td class="text-center">
-                <button 
-                  (click)="seleccionarCategoria(categoria)" 
-                  class="btn btn-info btn-sm me-2">
-                  Editar
-                </button>
-                <button 
-                  (click)="eliminarCategoria(categoria.id)" 
-                  class="btn btn-danger btn-sm">
-                  Eliminar
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+  <h2 class="text-center mb-4">Gestión de Categorías</h2>
+
+  <!-- Mensaje de estado -->
+  <div *ngIf="mensaje" class="alert alert-info text-center">
+    {{ mensaje }}
+  </div>
+
+  <!-- Formulario para crear una nueva categoría -->
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="nuevaCategoria" class="h5">Nueva Categoría:</label>
+        <input 
+          id="nuevaCategoria" 
+          type="text" 
+          [(ngModel)]="nuevaCategoria" 
+          class="form-control shadow-sm" 
+          placeholder="Escribe el nombre de la nueva categoría" 
+        />
+        <button (click)="crearCategoria()" class="btn btn-primary mt-2 w-100">Crear Categoría</button>
       </div>
     </div>
-  
+
     <!-- Formulario para editar una categoría seleccionada -->
-    <div *ngIf="categoriaSeleccionada" class="mt-4">
-      <h3 class="text-center">Editar Categoría</h3>
+    <div *ngIf="categoriaSeleccionada" class="col-md-6">
       <div class="form-group">
-        <label for="editarCategoria" class="h5">Nombre de la Categoría:</label>
+        <label for="editarCategoria" class="h5">Editar Categoría:</label>
         <input 
           id="editarCategoria" 
           type="text" 
@@ -67,4 +37,39 @@
       </div>
     </div>
   </div>
-  
+
+  <!-- Mostrar lista de categorías -->
+  <div *ngIf="categorias.length > 0" class="mb-4">
+    <h3 class="text-center">Lista de Categorías</h3>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>Nombre</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let categoria of dataSource.data">
+            <td>{{ categoria.nombre }}</td>
+            <td class="text-center d-flex">
+              <button 
+                (click)="seleccionarCategoria(categoria)" 
+                class="btn btn-info btn-sm me-2">
+                Editar
+              </button>
+              <button 
+                (click)="eliminarCategoria(categoria.id)" 
+                class="btn btn-danger btn-sm">
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Paginador -->
+  <mat-paginator [length]="categorias.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
