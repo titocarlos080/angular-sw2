@@ -201,7 +201,7 @@ export class TestsComponent implements OnInit {
       // Send the prompt to the API
 
       // Make a GET request to the Flask API
-      this.http.get<any>(`http://localhost:5000/generar/certificado?promp=${encodeURIComponent(prompt)}`)
+      this.http.get<any>(`http://3.84.62.170:5000/generar/certificado?promp=${encodeURIComponent(prompt)}`)
         .subscribe({
           next: (response) => {
             // Handle the response
